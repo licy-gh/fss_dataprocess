@@ -7,6 +7,7 @@ fss_dataprocess
 ├─.gitattributes - gitattributes配置文件
 ├─.gitignore - gitignore配置文件
 ├─index.py - FunctionGraph入口
+├─local_test.py - 本地测试文件
 └─README.md - 说明文件
 ```
 - `dependency/pandas_numpy.zip`为依赖包，由于华为自带的`pandas`和`numpy`就是一坨屎，所以需要自行导入。本项目所需的所有依赖包都已经打包成一个`pandas_numpy.zip`文件，到时候直接导入即可。如何导入依赖包在之后的“4. 构建函数工作流”一节会说明。
@@ -52,7 +53,7 @@ def min(data):
 
 传入的参数只有一项，用户输入的数据data，以json格式存储。只有单个输入时，data的格式为：
 
-```json
+```js
 {
     "operation": "...", // 用户指定的操作
     "parameters": [..., ...], // 用户对方法传入的参数，没有则为空list
@@ -62,7 +63,7 @@ def min(data):
 
 有多个需要输入时，data的格式为：
 
-```json
+```js
 {
     "operation": "...", // 用户指定的操作
     "parameters": [..., ...], // 用户对方法传入的参数，没有则为空list
@@ -80,8 +81,28 @@ def min(data):
 
 ## 3. 测试
 
-TODO。FunctionGraph代码运行逻辑与本地不同，无法直接在本地测试，我什么时候摸一个本地可以测试的代码出来吧。
+~~TODO。FunctionGraph代码运行逻辑与本地不同，无法直接在本地测试，我什么时候摸一个本地可以测试的代码出来吧。~~
+
+`local_test.py`可以进行简单的本地测试：
+
+1. 建立用户输入的json文件，根据数据格式填写相应字段
+2. 在`local_test.py`中第9行修改TEST_PATH参数，对应上面json文件的路径
+3. 运行`local_test.py` print输出
+
+输出数据也是json格式：
+
+```js
+{
+    “res”: [..., ...] // res项对应的就是你们函数的list输出
+}
+```
+
+本地测试没问题的话，FunctionGraph中也不会出错。
 
 ## 4. 构建函数工作流
 
 TODO，摸了。
+
+## 5. Reference
+
+- 函数工作流FunctionGraph文档：https://support.huaweicloud.com/functiongraph/index.html
